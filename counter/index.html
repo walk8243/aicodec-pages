@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カウンターアプリ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: #f0f0f0;
+      transition: background-color 0.3s;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    #count {
+      font-size: 3em;
+      margin: 20px 0;
+    }
+    button {
+      font-size: 1.2em;
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .increment { background-color: #4caf50; color: white; }
+    .decrement { background-color: #f44336; color: white; }
+    .reset { background-color: #607d8b; color: white; }
+
+    input[type="number"] {
+      font-size: 1.2em;
+      padding: 5px;
+      width: 80px;
+      margin-left: 10px;
+    }
+
+    #goalMessage {
+      font-weight: bold;
+      color: #e91e63;
+      margin-top: 20px;
+    }
+
+    /* 点滅アニメーション */
+    .highlight {
+      animation: blink 1s infinite;
+      background-color: #ff9800 !important;
+      color: white !important;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+  <h1>カウンターアプリ</h1>
+
+  <div>
+    ゴール設定:
+    <input type="number" id="goalInput" placeholder="目標" min="1" />
+    <button id="setGoalBtn" onclick="setGoal()">設定</button>
+  </div>
+
+  <div id="count">0</div>
+
+  <button class="increment" onclick="changeCount(1)">+1</button>
+  <button class="decrement" onclick="changeCount(-1)">-1</button>
+  <button class="reset" onclick="resetCount()">リセット</button>
+
+  <div id="goalMessage"></div>
+
+  <script>
+    let count = 0;
+    let goal = null;
+    const countElement = document.getElementById('count');
+    const goalInput = document.getElementById('goalInput');
+    const goalMessage = document.getElementById('goalMessage');
+    const setGoalBtn = document.getElementById('setGoalBtn');
+
+    function updateDisplay() {
+      countElement.textContent = count;
+      if (goal !== null && count >= goal) {
+        document.body.style.backgroundColor = "#dcedc8";
+        goalMessage.textContent = "🎉 ゴール達成！";
+      } else {
+        document.body.style.backgroundColor = "#f0f0f0";
+        goalMessage.textContent = "";
+      }
+    }
+
+    function changeCount(amount) {
+      count += amount;
+      updateDisplay();
+    }
+
+    function resetCount() {
+      count = 0;
+      updateDisplay();
+    }
+
+    function setGoal() {
+      const val = parseInt(goalInput.value, 10);
+      if (!isNaN(val) && val > 0) {
+        goal = val;
+        updateDisplay();
+        updateGoalButtonHighlight(); // 設定後に比較更新
+      } else {
+        alert("1以上の数字を入力してください。");
+      }
+    }
+
+    function updateGoalButtonHighlight() {
+      const inputVal = parseInt(goalInput.value, 10);
+      if (!isNaN(inputVal) && inputVal !== goal) {
+        setGoalBtn.classList.add('highlight');
+      } else {
+        setGoalBtn.classList.remove('highlight');
+      }
+    }
+
+    // 入力値が変わるたびにチェック
+    goalInput.addEventListener('input', updateGoalButtonHighlight);
+  </script>
+</body>
+</html>
