@@ -1,0 +1,2 @@
+# aicodec-pages
+生成系AIによって作成したHTMLファイルをGitHubPagesにデプロイする
