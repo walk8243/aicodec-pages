@@ -1,0 +1,27 @@
+{
+  "name": "@walk8243/aicodec-pages",
+  "version": "1.0.0",
+  "description": "生成系AIによって作成したHTMLファイルをGitHubPagesにデプロイする",
+  "scripts": {
+    "test": "echo \"no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walk8243/aicodec-pages.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "walk8243",
+    "email": "walk8243@gmail.com",
+    "url": "https://walk8243.xyz/"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/walk8243/aicodec-pages/issues"
+  },
+  "homepage": "https://github.com/walk8243/aicodec-pages#readme",
+  "private": true,
+  "workspaces": [
+    "counter"
+  ]
+}
