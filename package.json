@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "生成系AIによって作成したHTMLファイルをGitHubPagesにデプロイする",
   "scripts": {
+    "build": "npm run build -ws --if-present",
     "test": "echo \"no test specified\""
   },
   "repository": {
