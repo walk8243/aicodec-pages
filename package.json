@@ -4,6 +4,7 @@
   "description": "生成系AIによって作成したHTMLファイルをGitHubPagesにデプロイする",
   "scripts": {
     "build": "npm run build -ws --if-present",
+    "generate": "node generate.js",
     "test": "echo \"no test specified\""
   },
   "repository": {
