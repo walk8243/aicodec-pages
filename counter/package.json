@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "copyDirs": [
-    "dist"
+    "static"
   ],
   "scripts": {
     "build": "echo \"no build specified\"",
