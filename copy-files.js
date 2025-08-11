@@ -22,10 +22,13 @@ function copyDirectoryContents(src, dest) {
 
 // メイン処理
 function copyWorkspaceFiles() {
+  // 環境変数OUTPUT_DIRから書き出し先ディレクトリを取得、設定されていない場合はdistを使用
+  const outputDir = process.env.OUTPUT_DIR || 'dist';
+  
   // 書き出し用のディレクトリを作成
-  if (!fs.existsSync('dist')) {
-    fs.mkdirSync('dist');
-    console.log('Created dist directory');
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir);
+    console.log(`Created ${outputDir} directory`);
   }
 
   // ルート package.json を読み込む
@@ -52,7 +55,7 @@ function copyWorkspaceFiles() {
         const srcDir = path.join(workspace, dir);
         if (fs.existsSync(srcDir)) {
           // コピー先はworkspace名のディレクトリ直下（指定されたディレクトリ自体は作成しない）
-          const destDir = path.join('dist', name);
+          const destDir = path.join(outputDir, name);
           console.log(`Copying contents from ${workspace}/${dir} to ${destDir}`);
           copyDirectoryContents(srcDir, destDir);
           console.log(`Successfully copied contents from ${workspace}/${dir} to ${destDir}`);

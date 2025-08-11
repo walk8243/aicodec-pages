@@ -23,9 +23,8 @@ jobs:
         run: npm run build
       - name: Prepare build outputs
         run: |
-          mkdir -p ${{ env.OUTPUT_DIR }}
-          mkdir -p ${{ env.OUTPUT_DIR }}/counter
-          cp counter/index.html ${{ env.OUTPUT_DIR }}/counter/index.html
+          npm run generate
+          npm run copy
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@v3
         with:

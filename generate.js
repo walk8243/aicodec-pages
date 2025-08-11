@@ -1,9 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
+// 環境変数OUTPUT_DIRから書き出し先ディレクトリを取得、設定されていない場合はdistを使用
+const outputDir = process.env.OUTPUT_DIR || 'dist';
+
 // 書き出し用のディレクトリを作成
-if (!fs.existsSync('dist')) {
-  fs.mkdirSync('dist');
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir);
 }
 
 // ルート package.json を読み込む
@@ -48,5 +51,5 @@ const html = `<!DOCTYPE html>
 `;
 
 // 書き出し
-fs.writeFileSync('dist/index.html', html, 'utf-8');
-console.log('dist/index.html generated successfully!');
+fs.writeFileSync(path.join(outputDir, 'index.html'), html, 'utf-8');
+console.log(`${outputDir}/index.html generated successfully!`);
